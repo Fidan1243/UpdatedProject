@@ -1,0 +1,100 @@
+﻿@model Project.UI.Models.ProductListViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Products";
+    ViewData["Username"] = @Model.User.UserName;
+    ViewData["Role"] = @Model.User.Role;
+    ViewData["Models"] = @Model.Models;
+    ViewData["Materials"] = @Model.Materials;
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+ 
+<div class="shop-section">
+        <div class="container">
+            <div class="row flex-column-reverse flex-lg-row">
+                <div class="col-lg-12">
+                    <div class="sort-product-tab-wrapper">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active show sort-layout-single" id="layout-4-grid">
+                                            <div class="row">
+                                                    @foreach (var item in @Model.Products)
+                                                    {
+                                                <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
+                                                    <div class="product-default-single-item product-color--golden aos-init aos-animate" data-aos="fade-up" data-aos-delay="0">
+                                                        <div class="image-box">
+                                                            <a asp-action="Product" asp-controller="Home" asp-route-productId="@item.Id"  class="image-link">
+                                                                <img src="~/images/@item.ImagePath" alt="">
+                                                            </a>
+                                                            <div class="action-link">
+                                                                 <form asp-action="AddToCart" asp-controller="Home" asp-route-productId="@item.Id" method="post">
+
+                                                <div class="action-link-left">
+                                                        <input type="submit" style="color:white;" value="Add To Cart" data-bs-toggle="modal" data-bs-target="#modalAddcart"/>
+                                                </div>
+                                                </form>
+                                                                <div class="action-link-right">
+                                                                  
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="content">
+                                                            <div class="content-left">
+                                                                <h6 class="title"><a asp-action="Product" asp-controller="Home" asp-route-productId="@item.Id" >@item.Name</a></h6>
+                                                                <ul class="review-star">
+                                                                    @if (@item.OrderCount > 10)
+                                                    {
+
+                                                        <li class="fill"><i class="ion-android-star"></i></li>
+                                                    }
+                                                    @if (@item.OrderCount > 20)
+                                                    {
+
+                                                        <li class="fill"><i class="ion-android-star"></i></li>
+                                                    }
+                                                    @if (@item.OrderCount > 30)
+                                                    {
+
+                                                        <li class="fill"><i class="ion-android-star"></i></li>
+                                                    }
+                                                    @if (@item.OrderCount > 40)
+                                                    {
+
+                                                        <li class="fill"><i class="ion-android-star"></i></li>
+                                                    }
+                                                    @if (@item.OrderCount > 50)
+                                                    {
+
+                                                        <li class="fill"><i class="ion-android-star"></i></li>
+                                                    }
+                                                                </ul>
+                                                            </div>
+                                                            <div class="content-right">
+                                                                <span class="price">$@item.Price</span>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                        
+                                                
+                                                
+                                                    </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+
+                </div>
+            </div>
+        </div>
+    </div>

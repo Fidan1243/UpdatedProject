@@ -1,0 +1,57 @@
+﻿@model Project.UI.Models.RegisterViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div id="loginbox" style="margin-top:50px;"
+         class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">Register</div>
+            </div>
+            <div style="padding-top:30px;" class="panel-body">
+                <div style="display:none;" id="login-alert"
+                     class="alert alert-danger col-sm-12">
+                </div>
+                <div class="account_form aos-init aos-animate" data-aos="fade-up" data-aos-delay="0">
+                    <h3>Register</h3>
+                    <form asp-controller="Account" asp-action="Register" method="post"
+                          role="form" class="form-horizontal">
+                        <div class="default-form-box">
+                            <label>Name<span>*</span></label>
+                            <input asp-for="Name" type="text">
+                        </div>
+                        <div class="default-form-box">
+                            <label>Surname<span>*</span></label>
+                            <input asp-for="Surname" type="text">
+                        </div>
+                        <div class="default-form-box">
+                            <label>Email<span>*</span></label>
+                            <input asp-for="Email" type="text">
+                        </div>
+                          <div class="default-form-box">
+                            <label>Username<span>*</span></label>
+                            <input asp-for="Username" type="text">
+                        </div>
+                        <div class="default-form-box">
+                            <label>Passwords <span>*</span></label>
+                            <input asp-for="Password" type="password" />
+                            <span asp-validation-for="Password"></span>
+                        </div>
+                        <div class="login_submit">
+                            <button class="btn btn-md btn-black-default-hover mb-4 buttonN" style="background:black;color:white;" type="submit">Register</button>
+                            
+                            <a style="color:black;" href="/Account/Login">Already Have an Account?</a>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+﻿@model Project.UI.Models.ProductListViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Admin Panel";
+    ViewData["Username"] = @Model.User.UserName;
+    ViewData["Role"] = @Model.User.Role;
+    ViewData["Models"] = @Model.Models;
+    ViewData["Materials"] = @Model.Materials;
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<div class="cart-section" style="margin-top:30px;">
+    <div class="cart-table-wrapper aos-init aos-animate" data-aos="fade-up" data-aos-delay="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table_desc">
+
+                        <div class="table_page table-responsive">
+                            <a asp-action="AddProduct" asp-controller="Admin" class="btn btn-md btn-golden" id="cartUpdate">Add</a>
+
+                            <table id="CartTable">
+                                <thead>
+                                    <tr>
+                                        <th class="product_thumb">Image</th>
+                                        <th class="product_name">Product</th>
+                                        <th class="product-price">Price</th>
+                                        <th class="product_quantity">Model</th>
+                                        <th class="product_total">Material</th>
+
+                                        <th class="product_total"> </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in @Model.Products)
+                                    {
+                                        <tr>
+                                            <input name="Id" type="number" hidden value="@item.Id" asp-for="@item.Id">
+
+                                            <td class="product_thumb"><a asp-action="Product" asp-controller="Home" asp-route-productId="@item.Id"><img src="~/images/@item.ImagePath" alt=""></a></td>
+                                            <td class="product_name"><a asp-action="Product" asp-controller="Home" asp-route-productId="@item.Id">@item.Name</a></td>
+                                            <td class="product-price">$@item.Price</td>
+                                            <td class="product_quantity">
+                                                <label asp-for="@item.Model_Id">Model</label>
+
+                                                <select disabled asp-for="@item.Model_Id" class="form-control"
+                                                    asp-items="@(new SelectList(Model.Models, "Id", "Name"))">
+                                                </select>
+                                            </td>
+                                            <td class="product_total">
+                                                <label asp-for="@item.Material_Id">Material</label>
+
+                                                <select disabled asp-for="@item.Material_Id" class="form-control"
+                                                    asp-items="@(new SelectList(Model.Materials, "Id", "Name"))">
+                                                </select>
+                                            </td>
+                                            <td>
+
+                                                <div class="cart_submit">
+                                                    <a asp-action="UpdateProduct" asp-controller="Admin" asp-route-productId="@item.Id" class="btn btn-md btn-golden" id="cartUpdate">Update</a>
+                                                    <a asp-action="DeleteProduct" asp-controller="Admin" asp-route-productId="@item.Id" class="btn btn-md btn-golden" id="cartUpdate">Delete</a>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

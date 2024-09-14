@@ -1,0 +1,290 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewBag.Title</title>
+
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/png">
+
+    <link rel="stylesheet" href="~/css/vendor/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/vendor/ionicons.css">
+    <link rel="stylesheet" href="~/css/vendor/simple-line-icons.css">
+    <link rel="stylesheet" href="~/css/vendor/jquery-ui.min.css">
+
+    <link rel="stylesheet" href="~/css/plugins/swiper-bundle.min.css">
+    <link rel="stylesheet" href="~/css/plugins/animate.min.css">
+    <link rel="stylesheet" href="~/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="~/css/plugins/venobox.min.css">
+    <link rel="stylesheet" href="~/css/plugins/jquery.lineProgressbar.css">
+    <link rel="stylesheet" href="~/css/plugins/aos.min.css">
+
+    <link rel="stylesheet" href="~/css/style.css">
+
+    <link rel="stylesheet" href="~/css/vendor/vendor.min.css">
+    <link rel="stylesheet" href="~/css/plugins/plugins.min.css">
+    <link rel="stylesheet" href="~/css/style.min.css">
+
+    <style>
+        .imageProduct{
+            float: left !important;
+    height: 400px !important;
+    object-fit: cover !important;
+        }
+        .imagePr{
+            height: 60px !important;
+        }
+
+    </style>
+
+</head>
+<body data-aos-easing="ease" data-aos-duration="1000" data-aos-delay="0">
+    <header class="header-section d-none d-xl-block">
+        <div class="header-wrapper">
+            <!-- Start Header Top -->
+            <div class="header-top header-top-bg--black section-fluid">
+                <div class="container">
+                    <div class="col-12 d-flex align-items-center justify-content-between">
+                        <div class="header-top-left">
+                            <div class="header-top-contact header-top-contact-color--white header-top-contact-hover-color--green">
+                                <a href="tel:0123456789" class="icon-space-right"><i class="icon-call-in"></i>0123456789</a>
+                                <a href="mailto:fidan.imanova.87@gmail.com" class="icon-space-right"><i class="icon-envelope"></i>fidan.imanova.87@gmail.com</a>
+                                                                        @if (ViewBag.Role == "Admin"){
+
+                                <a href="/Admin/Index" class="icon-space-right"><i class="icon-user"></i>Admin Panel</a>
+                                                                        }
+
+                            </div>
+                        </div>
+                        <div class="header-top-right">
+                            <div class="header-top-user-link header-top-user-link-color--white header-top-user-link-hover-color--green">
+                                <a href="/Home/Cart">Cart</a>
+                                <a href="/Home/Checkout">Checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Header Top -->
+            <!-- Start Header Bottom -->
+            <div class="header-bottom header-bottom-color--green section-fluid sticky-header sticky-color--white">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 d-flex align-items-center justify-content-between">
+
+                            <div class="header-logo">
+                                <div class="logo">
+                                    <a href="/Home/Index"><img src="~/images/logo.png" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="main-menu menu-color--black menu-hover-color--green">
+                                <nav>
+                                    <ul>
+                                        <li>
+                                            <a href="/Home/Index">Home</a>
+                                        </li>
+                                        <li class="has-dropdown has-megaitem">
+                                            <a href="/Home/Products">
+                                                Products <i class="fa fa-angle-down"></i>
+
+                                            </a>
+                                            <div class="mega-menu">
+                                                <ul class="mega-menu-inner">
+                                                    <li class="mega-menu-item">
+                                                        <a asp-action="Models" asp-controller="Home" class="mega-menu-item-title">Models</a>
+                                                        <ul class="mega-menu-sub">
+                                                            @foreach (var item in ViewBag.Models)
+                                                            {
+
+                                                                <li style="margin-bottom:13px;">
+                                                                    <ul>
+
+                                                                        <a asp-action="Products" asp-controller="Home" asp-route-modelId="@item.Id">
+                                                                            @item.Name
+
+                                                                        </a>
+                                                                    </ul>
+
+                                                                </li>
+                                                            }
+                                                                                                                 </ul>
+                                                    </li>
+                                                    <li class="mega-menu-item">
+                                                        <a asp-action="Materials" asp-controller="Home" class="mega-menu-item-title">Materials</a>
+
+                                                        <ul class="mega-menu-sub">
+                                                            @foreach (var item in ViewBag.Materials)
+                                                            {
+
+                                                                <li style="margin-bottom:13px;">
+                                                                    <ul>
+
+                                                                        <a asp-action="Products" asp-controller="Home" asp-route-materialId="@item.Id">
+                                                                            @item.Name
+
+                                                                        </a>
+                                                                    </ul>
+                                                                   
+                                                                </li>
+                                                            }
+                                                                                                                 </ul>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a asp-action="Orders" asp-controller="Home">Orders</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <ul class="header-action-link action-color--black action-hover-color--green">
+                                <li>
+                                    <a href="/Home/Cart" class="offcanvas-toggle">
+                                        <i class="icon-bag"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Header Bottom -->
+        </div>
+    </header>
+
+
+
+    @RenderBody()
+
+    <footer class="footer-section footer-bg section-top-gap-100">
+        <div class="footer-wrapper">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row mb-n6">
+                        <div class="col-lg-3 col-sm-6 mb-6">
+                            <div class="footer-widget-single-item footer-widget-color--green" data-aos="fade-up"
+                                 data-aos-delay="0">
+                                <h5 class="title">INFORMATION</h5>
+                                <ul class="footer-nav">
+                                    <li><a href="#">Delivery Information</a></li>
+                                    <li><a href="#">Terms & Conditions</a></li>
+                                    <li><a href="contact-us.html">Contact</a></li>
+                                    <li><a href="#">Returns</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 mb-6">
+                            <div class="footer-widget-single-item footer-widget-color--green" data-aos="fade-up"
+                                 data-aos-delay="400">
+                                <h5 class="title">MODELS</h5>
+                                <ul class="footer-nav">
+                                    @foreach (var item in ViewBag.Models)
+                                    {
+                                        <li><a asp-action="Products" asp-controller="Home" asp-route-modelId="@item.Id">@item.Name</a></li>
+
+                                    }
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 mb-6">
+                            <div class="footer-widget-single-item footer-widget-color--green" data-aos="fade-up"
+                                 data-aos-delay="600">
+                                <h5 class="title">ABOUT US</h5>
+                                <div class="footer-about">
+                                    <p>
+                                        First of all, quality and beauty of your bath is everything for us,
+                                        and our misson is make sure that people get the best things for their bath
+
+                                    </p>
+
+                                    <address>
+                                        <span>Address: Your address goes here.</span>
+                                        <span>Email: demo@example.com</span>
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row justify-content-between align-items-center align-items-center flex-column flex-md-row mb-n6">
+                        <div class="col-auto mb-6">
+                            <div class="footer-payment">
+                                <div class="image">
+                                    <img src="~/images/logo.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <button class="material-scrolltop" type="button"></button>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+    <script type="text/javascript">
+        $("body").on("click", "#cartUpdate", function() {
+            //Loop through the Table rows and build a JSON array.
+            var customers = new Array();
+            $("#CartTable TBODY TR").each(function() {
+                var row = $(this);
+                var customer = {};
+                customer.Id = row.find("TD").eq(0).html();
+                customer.Quantity = row.find("TD").eq(5).html();
+                customers.push(customer);
+            });
+
+            //Send the JSON array to Controller using AJAX.
+            $.ajax({
+                type: "POST",
+                url: "/Home/UpdateCart",
+                data: JSON.stringify(customers),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(r) {
+                    alert(r + " record(s) inserted.");
+                }
+            });
+    </script>
+    <script src="~/js/vendor/modernizr-3.11.2.min.js"></script>
+    <script src="~/js/vendor/jquery-3.5.1.min.js"></script>
+    <script src="~/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+    <script src="~/js/vendor/popper.min.js"></script>
+    <script src="~/js/vendor/bootstrap.min.js"></script>
+    <script src="~/js/vendor/jquery-ui.min.js"></script>
+
+    <script src="~/js/plugins/swiper-bundle.min.js"></script>
+    <script src="~/js/plugins/material-scrolltop.js"></script>
+    <script src="~/js/plugins/jquery.nice-select.min.js"></script>
+    <script src="~/js/plugins/jquery.zoom.min.js"></script>
+    <script src="~/js/plugins/venobox.min.js"></script>
+    <script src="~/js/plugins/jquery.waypoints.js"></script>
+    <script src="~/js/plugins/jquery.lineProgressbar.js"></script>
+    <script src="~/js/plugins/aos.min.js"></script>
+    <script src="~/js/plugins/jquery.instagramFeed.js"></script>
+    <script src="~/js/plugins/ajax-mail.js"></script>
+
+    <script src="~/js/vendor/vendor.min.js"></script>
+    <script src="~/js/plugins/plugins.min.js"></script>
+
+    <script src="~/js/main.js"></script>
+</body>
+
+
+</html>
+
+
+
+<!-- Start Hero Slider Section-->
